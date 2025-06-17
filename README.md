@@ -13,7 +13,16 @@ A modern, interactive voice assistant web app built with Flask, OpenAI Whisper f
 ---
 
 ## Demo
-![Screenshot]() <!-- Add a screenshot if available -->
+![Screenshot](/Screenshot%202025-06-17%20234005.png)
+
+---
+
+## Prompt Template
+The system prompt template for the AI assistant is defined in the code and can be customized. For reference, see the prompt template in:
+
+```
+Prompt_templates/Screenshot 2025-06-17 234005.png
+```
 
 ---
 
@@ -145,22 +154,4 @@ Open your browser and go to:
 
 ## 🛠️ Troubleshooting
 - **Missing dependencies?**  
-  Double-check your `requirements.txt` and Python version.
-- **API errors?**  
-  Make sure your `.env` file is correct and your API key is valid.
-- **Audio issues?**  
-  Ensure your microphone is connected and accessible.
-
----
-
-## 📝 Notes
-- You can customize the system prompt in `app.py` for different assistant personalities.
-- For further UI tweaks, edit `templates/index.html`.
-
----
-
-
----
-
-## License
-This project is for educational and personal use. Please check the licenses of individual dependencies for more information. 
+  Double-check your `
