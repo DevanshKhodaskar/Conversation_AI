@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voice Assistant (Flask + Whisper + Groq + Kokoro)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f4f7f6;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 90vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 700px;
+    }
+    h1 {
+      color: #1a73e8;
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 2.5em;
+    }
+    .button-group {
+      margin-bottom: 30px;
+    }
+    button {
+      background-color: #1a73e8;
+      color: white;
+      padding: 12px 25px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      margin: 0 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+    button:hover {
+      background-color: #155bb5;
+      transform: translateY(-2px);
+    }
+    button:active {
+      background-color: #0f4a8c;
+      transform: translateY(0);
+    }
+    #status {
+      margin-top: 25px;
+      font-size: 1.2em;
+      color: #e67e22;
+      font-weight: 700;
+      min-height: 30px; /* Reserve space to prevent layout shifts */
+    }
+    #result {
+      margin-top: 25px;
+      padding: 20px;
+      background-color: #e9effb;
+      border-radius: 10px;
+      text-align: left;
+    }
+    #result p {
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+    #result strong {
+      color: #1a73e8;
+      font-weight: 700;
+    }
+    #transcript, #response {
+      color: #4a4a4a;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎙 Voice Assistant</h1>
+    <div class="button-group">
+      <button onclick="startRecording()">Start Recording</button>
+      <button onclick="stopRecording()">Stop & Process</button>
+    </div>
+    <div id="status">Ready</div>
+    <div id="result">
+      <p><strong>You Said:</strong> <span id="transcript"></span></p>
+      <p><strong>Groq Reply:</strong> <span id="response"></span></p>
+    </div>
+  </div>
+
+  <script>
+    function updateStatus(message) {
+      document.getElementById('status').innerText = message;
+    }
+
+    function startRecording() {
+      updateStatus('Recording...');
+      fetch('/start', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          // If the server confirms recording started, keep the status
+          if (data.status === 'Recording started') {
+            updateStatus('Recording...');
+          } else {
+            updateStatus('recording.');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          updateStatus('Error starting recording.');
+        });
+    }
+
+    function stopRecording() {
+      updateStatus('Processing...');
+      fetch('/stop', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('transcript').innerText = data.transcript || 'No speech detected.';
+          document.getElementById('response').innerText = data.response || 'No response generated.';
+          updateStatus('Ready'); // Or "Audio Played" if you add audio playback
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          updateStatus('Error processing. Try again.');
+        });
+    }
+  </script>
+</body>
+</html>

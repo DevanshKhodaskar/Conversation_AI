@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.log
+venv/
+.venv/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Audio files
+*.wav
+*.mp3
+
+# Whisper cache
+.cache/whisper/
+
+# Kokoro cache (HuggingFace models)
+.cache/huggingface/ 
+.env
+Prompt_templates/

@@ -1,0 +1,11 @@
+streamlit
+sounddevice
+numpy
+scipy
+openai-whisper
+kokoro>=0.9.2
+soundfile
+groq 
+python-dotenv #
+langchain-groq
+flask
