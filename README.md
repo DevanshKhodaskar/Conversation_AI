@@ -13,7 +13,7 @@ A modern, interactive voice assistant web app built with Flask, OpenAI Whisper f
 ---
 
 ## Demo
-![Screenshot](screenshot.png) <!-- Add a screenshot if available -->
+![Screenshot]() <!-- Add a screenshot if available -->
 
 ---
 
@@ -79,14 +79,10 @@ Open your terminal (Command Prompt, PowerShell, or Terminal) and run:
 ```bash
 git clone https://github.com/DevanshKhodaskar/Conversation_AI.git
 ```
-Replace `<repository-url>` with your actual repository link (e.g., `https://github.com/yourusername/your-repo.git`).
 
----
 
 ### 3. **Navigate to the Project Directory**
-```bash
-cd "New Project"
-```
+
 Or use the folder name that matches your cloned repo.
 
 ---
