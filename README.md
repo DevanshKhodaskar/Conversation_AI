@@ -77,7 +77,7 @@ New Project/
 ### 2. **Clone the Repository**
 Open your terminal (Command Prompt, PowerShell, or Terminal) and run:
 ```bash
-git clone <repository-url>
+git clone https://github.com/DevanshKhodaskar/Conversation_AI.git
 ```
 Replace `<repository-url>` with your actual repository link (e.g., `https://github.com/yourusername/your-repo.git`).
 
